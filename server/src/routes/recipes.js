@@ -6,7 +6,7 @@ import { verifyToken } from "./users.js";
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/",async (req, res) => {
   try {
     const result = await RecipesModel.find({});
     res.status(200).json(result);
@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 });
 
 // Create a new recipe
-router.post("/",async (req, res) => {
+router.post("/",verifyToken,async (req, res) => {
   const recipe = new RecipesModel({
     _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
@@ -58,7 +58,7 @@ router.get("/:recipeId", async (req, res) => {
 });
 
 // Save a Recipe
-router.put("/", async (req, res) => {
+router.put("/",verifyToken,async (req, res) => {
   const recipe = await RecipesModel.findById(req.body.recipeID);
   const user = await UserModel.findById(req.body.userID);
   try {
