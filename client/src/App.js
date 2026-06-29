@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { Navbar } from "./components/navbar";
-import { Auth } from "./pages/auth";
-import { CreateRecipe } from "./pages/create-recipe";
-import { Home } from "./pages/home";
-import { SavedRecipes } from "./pages/saved-recipes";
+import { Navbar } from "./components/navbar.js";
+import  {Auth} from "./pages/auth.js";
+import  CreateRecipe  from "./pages/create-recipe.js";
+import  Home  from "./pages/home.js";
+import SavedRecipe from "./pages/saved-recipes.js"
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/create-recipe" element={<CreateRecipe />} />
-          <Route path="/saved-recipes" element={<SavedRecipes />} />
+          <Route path="/saved-recipes" element={<SavedRecipe />} />
           <Route path="/auth" element={<Auth />} />
         </Routes>
       </Router>

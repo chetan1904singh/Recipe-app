@@ -1,9 +1,11 @@
 import express from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import { UserModel } from "../models/users.js";
 
 const router = express.Router();
-import { UserModel } from "../models/Users.js";
+
+
 
 router.post("/register", async (req, res) => {
   const { username, password } = req.body;
@@ -15,7 +17,10 @@ router.post("/register", async (req, res) => {
   const newUser = new UserModel({ username, password: hashedPassword });
   await newUser.save();
   res.json({ message: "User registered successfully" });
+  //console.log(username);
 });
+
+
 
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
@@ -36,6 +41,8 @@ router.post("/login", async (req, res) => {
 });
 
 export { router as userRouter };
+
+
 
 //VERIFY LOGIC
 export const verifyToken = (req, res, next) => {

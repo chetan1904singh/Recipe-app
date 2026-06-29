@@ -3,10 +3,11 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import { userRouter } from "./routes/users.js"
+import {recipesRouter} from "./routes/recipes.js"
 
 
 const app=express();
-const PORT=8001;
+const PORT=3001;
 dotenv.config()
 app.use(express.json());
 app.use(cors());
@@ -19,7 +20,9 @@ mongoose.connect(process.env.MONGO_URI)
 .catch((err) => {
     console.log(err);
 });
+
 app.use('/auth',userRouter);
+app.use('/recipes',recipesRouter);
 
 app.listen(PORT,()=>{
     console.log('Server Started!')
